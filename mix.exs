@@ -11,6 +11,7 @@ defmodule Playground.MixProject do
       start_permanent: Mix.env() == :prod,
       preferred_cli_env: [check: :test],
       aliases: aliases(),
+      docs: docs(),
       deps: deps()
     ]
   end
@@ -35,6 +36,7 @@ defmodule Playground.MixProject do
   defp deps do
     [
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.23", only: :dev, runtime: false},
       {:phoenix, "~> 1.5.7"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},
@@ -65,6 +67,13 @@ defmodule Playground.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test --exclude not_implemented"]
+    ]
+  end
+
+  defp docs do
+    [
+      main: "readme",
+      extras: ["README.md"]
     ]
   end
 end
