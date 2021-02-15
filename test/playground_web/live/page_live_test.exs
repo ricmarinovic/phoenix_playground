@@ -8,4 +8,6 @@ defmodule PlaygroundWeb.PageLiveTest do
     assert disconnected_html =~ "Welcome to Phoenix!"
     assert render(page_live) =~ "Welcome to Phoenix!"
   end
+
+  test "something"
 end

@@ -9,6 +9,7 @@ defmodule Playground.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
+      preferred_cli_env: [check: :test],
       aliases: aliases(),
       deps: deps()
     ]
@@ -59,10 +60,11 @@ defmodule Playground.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
+      check: ["format --check-formatted", "credo --strict", "test"],
       setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test --exclude not_implemented"]
     ]
   end
 end
