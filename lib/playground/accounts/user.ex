@@ -1,5 +1,5 @@
 defmodule Playground.Accounts.User do
-  use Ecto.Schema
+  use Playground.Schema
   import Ecto.Changeset
 
   @derive {Inspect, except: [:password]}
