@@ -10,8 +10,8 @@ env:
   MIX_ENV: test
 
 jobs:
-  build:
-    name: Build
+  mix_test:
+    name: Lint and test
     runs-on: ubuntu-latest
 
     strategy:
