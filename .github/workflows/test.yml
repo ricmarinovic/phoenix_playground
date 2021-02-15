@@ -49,6 +49,7 @@ jobs:
   mix_test:
     needs: build
     name: mix test
+    runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:11
