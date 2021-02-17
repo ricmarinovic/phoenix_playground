@@ -13,7 +13,7 @@
 <%= for company <- @companies do %>
     <tr>
       <td><%= company.name %></td>
-      <td><%= company.state %></td>
+      <td><%= translate_enum(company.state) %></td>
 
       <td>
         <span><%= link "Show", to: Routes.company_path(@conn, :show, company) %></span>

@@ -9,7 +9,7 @@
 
   <li>
     <strong>State:</strong>
-    <%= @company.state %>
+    <%= translate_enum(@company.state) %>
   </li>
 
 </ul>

@@ -10,7 +10,7 @@
   <%= error_tag f, :name %>
 
   <%= label f, :state %>
-  <%= text_input f, :state %>
+  <%= select_enum f, :state, Playground.Business.Company %>
   <%= error_tag f, :state %>
 
   <div>
