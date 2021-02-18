@@ -16,5 +16,7 @@ defmodule Playground.Business.Company do
     company
     |> cast(attrs, [:name, :state])
     |> validate_required([:name, :state])
+    |> validate_length(:name, min: 3)
+    |> validate_inclusion(:state, @states)
   end
 end
