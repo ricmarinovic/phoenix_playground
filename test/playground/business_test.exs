@@ -6,8 +6,8 @@ defmodule Playground.BusinessTest do
   describe "companies" do
     alias Playground.Business.Company
 
-    @valid_attrs %{name: "some name", state: "some state"}
-    @update_attrs %{name: "some updated name", state: "some updated state"}
+    @valid_attrs %{name: "some name", state: :open}
+    @update_attrs %{name: "some updated name", state: :closed}
     @invalid_attrs %{name: nil, state: nil}
 
     def company_fixture(attrs \\ %{}) do
@@ -32,7 +32,7 @@ defmodule Playground.BusinessTest do
     test "create_company/1 with valid data creates a company" do
       assert {:ok, %Company{} = company} = Business.create_company(@valid_attrs)
       assert company.name == "some name"
-      assert company.state == "some state"
+      assert company.state == :open
     end
 
     test "create_company/1 with invalid data returns error changeset" do
@@ -43,7 +43,7 @@ defmodule Playground.BusinessTest do
       company = company_fixture()
       assert {:ok, %Company{} = company} = Business.update_company(company, @update_attrs)
       assert company.name == "some updated name"
-      assert company.state == "some updated state"
+      assert company.state == :closed
     end
 
     test "update_company/2 with invalid data returns error changeset" do

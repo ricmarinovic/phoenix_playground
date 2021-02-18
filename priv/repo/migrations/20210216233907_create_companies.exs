@@ -8,6 +8,5 @@ defmodule Playground.Repo.Migrations.CreateCompanies do
 
       timestamps()
     end
-
   end
 end

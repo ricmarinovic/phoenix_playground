@@ -3,8 +3,8 @@ defmodule PlaygroundWeb.CompanyControllerTest do
 
   alias Playground.Business
 
-  @create_attrs %{name: "some name", state: "some state"}
-  @update_attrs %{name: "some updated name", state: "some updated state"}
+  @create_attrs %{name: "some name", state: :open}
+  @update_attrs %{name: "some updated name", state: :closed}
   @invalid_attrs %{name: nil, state: nil}
 
   def fixture(:company) do
@@ -75,6 +75,7 @@ defmodule PlaygroundWeb.CompanyControllerTest do
     test "deletes chosen company", %{conn: conn, company: company} do
       conn = delete(conn, Routes.company_path(conn, :delete, company))
       assert redirected_to(conn) == Routes.company_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.company_path(conn, :show, company))
       end
