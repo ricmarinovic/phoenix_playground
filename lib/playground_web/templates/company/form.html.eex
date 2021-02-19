@@ -5,7 +5,7 @@
     </div>
   <% end %>
 
-  <%= input f, :name %>
+  <%= input f, :name, label: dgettext("inputs", "Company name") %>
   <%= input f, :state, using: :select_enum, module: Playground.Business.Company %>
 
   <div>
