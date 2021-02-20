@@ -20,7 +20,7 @@ defmodule PlaygroundWeb.Router do
   scope "/", PlaygroundWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    get "/", CompanyController, :index
     resources "/companies", CompanyController
   end
 
