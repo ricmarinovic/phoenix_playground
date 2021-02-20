@@ -10,8 +10,50 @@ env:
   MIX_ENV: test
 
 jobs:
-  mix_test:
-    name: Lint and test
+  lint:
+    name: Linter
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        elixir: [1.11.3]
+        otp: [23.2.4]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Elixir
+      uses: actions/setup-elixir@v1
+      with:
+        elixir-version: ${{ matrix.elixir }}
+        otp-version: ${{ matrix.otp }}
+
+    - name: Restore dependencies cache
+      uses: actions/cache@v2
+      id: deps-cache
+      with:
+        path: deps
+        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+        restore-keys: ${{ runner.os }}-mix-
+
+    - name: Install dependencies
+      if: steps.deps-cache.outputs.cache-hit != 'true'
+      run: |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.unlock --check-unused
+        mix deps.get
+
+    - name: Check formatting
+      run: mix format --check-formatted
+
+    - name: Compile
+      run: mix compile --warnings-as-errors
+
+    - name: Run credo
+      run: mix credo --strict
+
+  test:
+    name: Test
     runs-on: ubuntu-latest
 
     strategy:
@@ -52,17 +94,7 @@ jobs:
       run: |
         mix local.rebar --force
         mix local.hex --force
-        mix deps.unlock --check-unused
         mix deps.get
-
-    - name: Check formatting
-      run: mix format --check-formatted
-
-    - name: Compile
-      run: mix compile --warnings-as-errors
-
-    - name: Run credo
-      run: mix credo --strict
 
     - name: Run tests
       run: mix test
