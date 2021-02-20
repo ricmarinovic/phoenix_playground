@@ -22,6 +22,7 @@ defmodule PlaygroundWeb.InputHelpers do
   def input(form, field, opts \\ []) do
     {type, opts} =
       Keyword.pop_lazy(opts, :using, fn -> Phoenix.HTML.Form.input_type(form, field) end)
+
     {label_text, opts} = Keyword.pop(opts, :label, humanize(field))
 
     validations = Phoenix.HTML.Form.input_validations(form, field)

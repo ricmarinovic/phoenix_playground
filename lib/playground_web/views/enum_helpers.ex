@@ -9,7 +9,12 @@ defmodule PlaygroundWeb.EnumHelpers do
   Translates an enum value using gettext.
   """
   def translate_enum(value) when is_atom(value) do
-    Gettext.dgettext(PlaygroundWeb.Gettext, "enums", Atom.to_string(value))
+    value =
+      value
+      |> Atom.to_string()
+      |> humanize()
+
+    Gettext.dgettext(PlaygroundWeb.Gettext, "enums", value)
   end
 
   @doc """
