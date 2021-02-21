@@ -1,5 +1,5 @@
 defmodule Playground.Business.Company do
-  use Ecto.Schema
+  use Playground.Schema
   import Ecto.Changeset
 
   @states ~w[open closed pending]a
