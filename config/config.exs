@@ -10,6 +10,8 @@ import Config
 config :playground,
   ecto_repos: [Playground.Repo]
 
+config :playground, Playground.Repo, migration_timestamps: [type: :utc_datetime_usec]
+
 # Configures the endpoint
 config :playground, PlaygroundWeb.Endpoint,
   url: [host: "localhost"],
