@@ -88,6 +88,8 @@ defmodule PlaygroundWeb do
       import Phoenix.View
 
       import PlaygroundWeb.ErrorHelpers
+      import PlaygroundWeb.EnumHelpers
+      import PlaygroundWeb.InputHelpers
       import PlaygroundWeb.Gettext
       alias PlaygroundWeb.Router.Helpers, as: Routes
     end

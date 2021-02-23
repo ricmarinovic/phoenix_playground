@@ -64,6 +64,11 @@ defmodule PlaygroundWeb.UserSettingsController do
     end
   end
 
+  def profile(conn, _params) do
+    current_user = conn.assigns.current_user
+    render(conn, "profile.html", current_user: current_user)
+  end
+
   defp assign_email_and_password_changesets(conn, _opts) do
     user = conn.assigns.current_user
 
